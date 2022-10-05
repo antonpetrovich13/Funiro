@@ -21,25 +21,24 @@ let isMobile = {
 	any: function () { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }
 };
 
-
 // Работа с контентом формы
-const formElement = document.forms.firstForm;
+const formsArray = Array.from(document.forms);
 
-if (formElement) {
-	formElement.input.value = formElement.input.dataset.value;
+if (formsArray.length > 0) {
+	formsArray.forEach(item => {
+		item.input.value = item.input.dataset.value;
 
-	formElement.addEventListener('focusin', function () {
-		if (formElement.input.value == formElement.input.dataset.value)
-			formElement.input.value = '';
-	});
+		item.addEventListener('focusin', function () {
+			if (item.input.value == item.input.dataset.value)
+				item.input.value = '';
+		});
 
-	formElement.addEventListener('focusout', function () {
-		if (formElement.input.value == '')
-			formElement.input.value = formElement.input.dataset.value;
+		item.addEventListener('focusout', function () {
+			if (item.input.value == '')
+				item.input.value = item.input.dataset.value;
+		})
 	})
 }
-
-
 
 // Обработчики событий клика
 window.onload = function () {
@@ -134,6 +133,119 @@ if (burger) {
 	}
 }
 
+// СПОЙЛЕР №2
+if (document.documentElement.clientWidth < 768) {
+	let spoilers = document.querySelectorAll('.menu-footer__column');
+
+	spoilers.forEach(item => {
+		let itemBody = item.querySelector('.menu-footer__wrapper');
+
+		if (!itemBody) return;
+
+		let itemHeight = itemBody.clientHeight;
+
+		itemBody.style.height = '0px';
+
+		// Активация спойлера
+		item.querySelector('.menu-footer__arrow ').onclick = function (event) {
+
+			//Работа с кнопкой
+			let arrowCollection = document.querySelectorAll('.menu-footer__arrow ');
+			let currentItem = event.target;
+
+			// Добавление класса нажатой стрелке, удаление класса всем остальным активным стрелкам
+			if (currentItem.classList.contains('_active')) {
+				currentItem.classList.remove('_active');
+			} else {
+				arrowCollection.forEach((elem) => {
+					if (elem.classList.contains('_active')) {
+						elem.classList.remove('_active');
+					}
+				})
+
+				item.querySelector('.menu-footer__arrow ').classList.add('_active');
+			}
+
+			// Работа с контентым блоком
+			if (!itemBody.classList.contains('_active')) {
+				// Закрывает все открытые элементы
+				let itemBodyCollection = document.querySelectorAll('.menu-footer__wrapper');
+				itemBodyCollection.forEach(elem => {
+					if (elem.classList.contains('_active')) {
+						elem.style.height = '0px';
+						elem.classList.remove('_active');
+					}
+				})
+
+				itemBody.style.height = itemHeight + 'px';
+				itemBody.classList.add('_active');
+			} else {
+				itemBody.style.height = '0px';
+				itemBody.classList.remove('_active');
+			}
+		}
+	})
+}
+
+
+// ВАЛИДАЦИЯ ФОРМЫ
+/*document.addEventListener('DOMContentLoaded', function () {
+	const form = document.getElementById('form');
+	form.addEventListener('submit', formSend);
+	async function formSend(e) {
+		e.preventDefault();
+
+		let error = formValidate(form);
+		let formData = new FormData(form);
+
+		if (error === 0) {
+			form.classList.add('_sending');
+			let response = await fetch('sendmail.php', {
+				method: 'POST',
+				body: formData
+			});
+			if (response.ok) {
+				let result = await response.json();
+				alert(result.message);
+				form.reset();
+				form.classList.remove('_sending');
+			} else {
+				alert("Ошибка");
+				form.classList.remove('_sending');
+			}
+		} else {
+			alert('Заполните обязательные поля');
+		}
+	}
+
+	function formValidate(form) {
+		let error = 0;
+		let formReq = document.querySelectorAll('._req');
+
+		for (let index = 0; index < formReq.length; index++) {
+			const input = formReq[index];
+			formRemoveError(input);
+			if (input.value === '') {
+				formAddError(input);
+				error++;
+			}
+		}
+		return error;
+	}
+	function formAddError(input) {
+		input.parentElement.classList.add('_error');
+		input.classList.add('_error');
+	}
+	function formRemoveError(input) {
+		input.parentElement.classList.remove('_error');
+		input.classList.remove('_error');
+	}
+
+	//Функция теста телефона
+	function phoneTest(input) {
+		return !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(input.value);
+	}
+});*/
 
 
 
