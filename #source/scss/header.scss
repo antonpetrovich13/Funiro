@@ -5,7 +5,28 @@
 	top: 0;
 	left: 0;
 
+	&._scroll {
+		.header__wrapper {
+			background-color: rgba(255, 255, 255, 0.9);
+
+			@media(any-hover:hover) {
+				&:hover {
+					background-color: rgba(255, 255, 255, 1);
+				}
+			}
+		}
+
+		.header__body {
+			min-height: rem(50);
+
+			@media (min-width: 992px) {
+				min-height: rem(70);
+			}
+		}
+	}
+
 	&__wrapper {
+		transition: background-color 0.3s ease 0s;
 		position: fixed;
 		width: 100%;
 		left: 0;
@@ -16,6 +37,7 @@
 	&__container {}
 
 	&__body {
+		transition: min-height 0.3s ease 0s;
 		display: flex;
 		align-items: center;
 		padding: rem(5) 0;

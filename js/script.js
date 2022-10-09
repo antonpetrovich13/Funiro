@@ -67,7 +67,7 @@ window.onload = function () {
 	}
 }
 
-// СПОЙЛЕР
+// СПОЙЛЕР HEADER
 if (document.documentElement.clientWidth < 768) {
 	let spoilers = document.querySelectorAll('.menu__item');
 
@@ -133,7 +133,7 @@ if (burger) {
 	}
 }
 
-// СПОЙЛЕР №2
+// СПОЙЛЕР FOOTER
 if (document.documentElement.clientWidth < 768) {
 	let spoilers = document.querySelectorAll('.menu-footer__column');
 
@@ -209,6 +209,27 @@ if (document.querySelector('.slider-main__body')) {
 			prevEl: '.slider-main .slider-arrow_prev',
 		}
 	});
+}
+
+// ПЕРЕМЕЩЕНИЕ КНОПКИ content-main__button
+if (document.documentElement.clientWidth < 992) {
+	let buttonElem = document.querySelector('.content-main__button');
+	let parentWrapper = document.querySelector('.main-slider__body');
+
+	parentWrapper.append(buttonElem);
+}
+
+// ДОБАВЛЕНИЕ HEADER ФОНА ПРИ СКРОЛЛЕ
+window.onscroll = function () {
+	const headerElement = document.querySelector('header');
+
+	const headerCoords = headerElement.offsetHeight;
+
+	if (window.pageYOffset > headerCoords) {
+		headerElement.classList.add('_scroll');
+	} else {
+		headerElement.classList.remove('_scroll');
+	}
 }
 
 
