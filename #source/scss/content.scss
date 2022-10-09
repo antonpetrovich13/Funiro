@@ -274,3 +274,119 @@
 		color: $grayColor
 	}
 }
+
+// <PRODUCTS> ====================================================================================================================================================
+.products {
+	@include adaptiv-value('padding-bottom', 44, 30, 1);
+
+	&__container {}
+
+	&__title {
+		margin: 0px 0px 32px/40px * 1em 0px;
+	}
+
+	&__items {
+		display: grid;
+		gap: rem(32);
+		grid-template-columns: repeat(auto-fit, minmax(rem(285), 1fr));
+	}
+
+	&__item {}
+}
+
+.item-product {
+	background-color: #f4f5f7;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	&__labels {
+		position: absolute;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		@include adaptiv-value('right', 24, 10, 1);
+		@include adaptiv-value('top', 24, 10, 1);
+	}
+
+	&__label {
+		flex: 0 0 rem(48);
+		width: rem(48);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #fff;
+		font-weight: 500;
+
+		&:not(:last-child) {
+			margin: 0 0 rem(10) 0;
+		}
+
+		&_sale {
+			background-color: #e97171;
+		}
+
+		&_new {
+			background-color: #2ec1ac;
+		}
+	}
+
+	&__image {
+		padding: 0px 0px 301px/285px * 100% 0px;
+	}
+
+	&__body {
+		flex: 1 1 auto;
+		padding: rem(16) rem(16) rem(32) rem(16);
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__content {
+		flex: 1 1 auto;
+	}
+
+	&__title {
+		@include adaptiv-value('font-size', 24, 20, 1);
+		font-weight: 600;
+		line-height: 120%;
+		margin: 0px 0px 8px/24px * 1em 0px;
+	}
+
+	&__text {
+		color: $grayColor;
+		line-height: 150%;
+		margin: 0px 0px 8px/24px * 1em 0px;
+	}
+
+	&__prices {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		line-height: 150%;
+	}
+
+	&__price {
+		@include adaptiv-value('font-size', 20, 16, 1);
+		font-weight: 600;
+
+		&_old {
+			@include adaptiv-value('font-size', 16, 14, 1);
+			font-weight: normal;
+			margin: 0px 0px 0px rem(16);
+			color: #b0b0b0;
+		}
+	}
+
+	&__actions {}
+}
+
+.actions-product {
+
+	&__body {}
+
+	&__button {}
+
+	&__link {}
+}

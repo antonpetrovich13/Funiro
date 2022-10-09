@@ -261,4 +261,23 @@ body {
 	text-align: center;
 	transition: all 0.3s ease 0s;
 	min-height: rem(48);
+
+	&_white {
+		color: $orangeColor;
+		background-color: #fff;
+
+		@media(any-hover:hover) {
+			&:hover {
+				color: #fff;
+				background-color: $orangeColor;
+			}
+		}
+	}
+}
+
+._title {
+	@include adaptiv-value('font-size', 40, 24, 1);
+	font-weight: 700;
+	line-height: 120%;
+	text-align: center;
 }
