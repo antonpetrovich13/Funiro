@@ -301,6 +301,11 @@
 	&__more {
 		border: 1px solid $orangeColor;
 		min-width: rem(245);
+
+		&._hold {
+			opacity: 0.2;
+			cursor: default;
+		}
 	}
 }
 
@@ -436,6 +441,11 @@
 
 		&:not(:last-child) {
 			margin: 0 0 rem(24) 0;
+		}
+
+		&._hold {
+			opacity: 0.2;
+			cursor: default;
 		}
 	}
 
