@@ -478,6 +478,30 @@ function updateCart(productButton, productId, productAdd = true) {
 	}
 }
 
+// СЛАЙДЕР ROOMS
+if (document.querySelector('.slider-rooms__body')) {
+	new Swiper('.slider-rooms__body', {
+		observer: true,
+		observeParents: true,
+		slidesPerView: 'auto',
+		spaceBetween: 24,
+		watchOverflow: true,
+		speed: 800,
+		loop: true,
+		loopAdditionalSlides: 5,
+		preloadImages: false,
+		parallax: true,
+		pagination: {
+			el: '.slider-rooms__dotts',
+			clickable: true,
+		},
+		navigation: {
+			nextEl: '.slider-rooms .slider-arrow_next',
+			prevEl: '.slider-rooms .slider-arrow_prev',
+		}
+	});
+}
+
 
 // ВАЛИДАЦИЯ ФОРМЫ
 /*document.addEventListener('DOMContentLoaded', function () {

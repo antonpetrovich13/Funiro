@@ -470,3 +470,223 @@
 		}
 	}
 }
+
+// <ROOMS> ====================================================================================================================================================
+.page {
+
+	&__rooms {}
+}
+
+.rooms {
+	background-color: #fcf8f3;
+	@include adaptiv-value('padding-top', 44, 30, 1);
+	@include adaptiv-value('padding-bottom', 44, 30, 1);
+
+	&__container {
+		@media (min-width: 992px) {
+			display: flex;
+		}
+	}
+
+	&__body {
+		flex: 0 0 465/1240 * 100%;
+		position: relative;
+		z-index: 5;
+		align-self: center;
+
+		@media (min-width: 992px) {
+			@include adaptiv-value('padding-right', 80, 30, 1);
+		}
+
+		@media (max-width: 992px) {
+			margin: 0px 0px rem(30) 0px;
+		}
+	}
+
+	&__title {
+		&:not(:last-child) {
+			margin: 0px 0px 8px/40px * 1em 0px;
+		}
+
+		text-align: left !important;
+	}
+
+	&__text {
+		line-height: 150%;
+		font-weight: 500;
+
+		&:not(:last-child) {
+			margin: 0 0 rem(24) 0;
+		}
+	}
+
+	&__button {
+		background-color: $orangeColor;
+		color: #fff;
+		min-width: rem(180);
+
+		@media(any-hover:hover) {
+			&:hover {
+				background-color: #da8f4a;
+			}
+		}
+	}
+
+	&__slider {
+		flex: 1 1 auto;
+		min-width: 0;
+		align-self: flex-start;
+
+		@media (max-width: 480px) {
+			margin: 0px rem(-15);
+		}
+	}
+}
+
+
+.slider-rooms {
+	position: relative;
+
+	&__body {
+		overflow: visible;
+		position: relative;
+
+		&:before {
+			content: '';
+			position: absolute;
+			width: 100vw;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: #fcf8f3;
+			z-index: 2;
+			transform: translate(-100%, 0);
+		}
+	}
+
+	&__wrapper {
+		@include adaptiv-value('height', 585, 400, 1);
+	}
+
+	&__slide {
+		width: rem(372);
+		position: relative;
+		overflow: hidden;
+
+		&.swiper-slide-active {
+			.slider-rooms__image {
+				@include adaptiv-value('height', 585, 400, 1);
+			}
+
+			.slider-rooms__content {
+				visibility: visible;
+			}
+		}
+
+		@media (max-width: 480px) {
+			width: 100%;
+		}
+	}
+
+	&__image {
+		transition: height 0.8s ease 0s;
+		@include adaptiv-value('height', 585, 400, 1);
+
+		@media (min-width: 768px) {
+			@include adaptiv-value('height', 486, 301, 1);
+		}
+	}
+
+	&__content {
+		visibility: hidden;
+		position: absolute;
+		color: inherit;
+		max-width: rem(240);
+		@include adaptiv-value('left', 24, 15, 1);
+		@include adaptiv-value('bottom', 24, 15, 1);
+		@include adaptiv-value('padding', 32, 15, 1);
+		background-color: rgba(255, 255, 255, 0.9);
+
+		@media(any-hover:hover) {
+			&:hover {
+				&:before {
+					background-color: #da8f4a;
+				}
+			}
+		}
+
+		&:before {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			transform: translate(100%, 0);
+			width: rem(48);
+			height: rem(48);
+			background-color: $orangeColor;
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s ease 0s;
+		}
+	}
+
+	&__title {
+		font-weight: 600;
+		@include adaptiv-value('font-size', 28, 24, 1);
+	}
+
+	&__arrows {
+		pointer-events: none;
+		position: absolute;
+		top: 50%;
+		transform: translate(0, -50%);
+		width: calc(100% - 48px);
+		left: 24px;
+		z-index: 5;
+		justify-content: space-between;
+
+		@media (min-width:1320px) {
+			width: calc(100% + 48px);
+			left: -24px;
+		}
+
+		@media (max-width: 480px) {
+			display: none !important;
+		}
+	}
+
+	&__dotts {
+		@media (min-width: 768px) {
+			position: absolute;
+			bottom: rem(30) !important;
+			width: 100%;
+			left: rem(396) !important;
+			z-index: 2;
+		}
+
+		@media (max-width: 768px) {
+			justify-content: center;
+			padding: rem(15) 0px 0px 0px;
+		}
+	}
+}
+
+.label-slider {
+	display: grid;
+	color: $darkGreyColor;
+	grid-template-columns: auto rem(27) auto;
+	gap: rem(8);
+	align-items: center;
+	justify-content: start;
+
+
+	&:not(:last-child) {
+		margin: 0 0 rem(8) 0;
+	}
+
+	&__line {
+		height: rem(1);
+		background-color: $darkGreyColor;
+	}
+}
