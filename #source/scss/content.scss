@@ -139,8 +139,6 @@
 		}
 	}
 
-	&__wrapper {}
-
 	&__slide {
 		position: relative;
 	}
@@ -279,8 +277,6 @@
 .products {
 	@include adaptiv-value('padding-bottom', 44, 30, 1);
 
-	&__container {}
-
 	&__title {
 		margin: 0px 0px 32px/40px * 1em 0px;
 	}
@@ -290,8 +286,6 @@
 		gap: rem(32);
 		grid-template-columns: repeat(auto-fit, minmax(rem(285), 1fr));
 	}
-
-	&__item {}
 
 	&__footer {
 		padding: rem(32) 0px 0px 0px;
@@ -472,11 +466,6 @@
 }
 
 // <ROOMS> ====================================================================================================================================================
-.page {
-
-	&__rooms {}
-}
-
 .rooms {
 	background-color: #fcf8f3;
 	@include adaptiv-value('padding-top', 44, 30, 1);
@@ -542,7 +531,6 @@
 		}
 	}
 }
-
 
 .slider-rooms {
 	position: relative;
@@ -688,5 +676,205 @@
 	&__line {
 		height: rem(1);
 		background-color: $darkGreyColor;
+	}
+}
+
+// <TIPS> ====================================================================================================================================================
+.tips {
+	@include adaptiv-value('padding-top', 44, 30, 1);
+	@include adaptiv-value('padding-bottom', 44, 30, 1);
+}
+
+.slider-tips {
+	position: relative;
+
+	&__body {
+		overflow: hidden;
+		@include adaptiv-value('margin-left', -32, -15, 1);
+		@include adaptiv-value('margin-right', -32, -15, 1);
+		@include adaptiv-value('padding', 32, 15, 1);
+	}
+
+	&__dotts {
+		@include adaptiv-value('padding-top', 8, 0, 1);
+		justify-content: center;
+	}
+
+	&__arrows {
+		pointer-events: none;
+		position: absolute;
+		top: 50%;
+		transform: translate(0, -50%);
+		width: calc(100% - 48px);
+		left: 24px;
+		z-index: 5;
+		justify-content: space-between;
+
+		@media (min-width:1320px) {
+			width: calc(100% + 48px);
+			left: -24px;
+		}
+
+		@media (max-width: 480px) {
+			display: none !important;
+		}
+	}
+
+	&__slide {
+		display: flex;
+		flex-direction: column;
+		transition: box-shadow 0.3s ease 0s;
+
+		@media(any-hover:hover) {
+			&:hover {
+				box-shadow: 0 0 32px rgba(97, 97, 97, 0.2);
+
+			}
+		}
+	}
+
+	&__image {
+		padding: 0px 0px 251/391 * 100% 0px;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		padding: rem(15);
+		flex: 1 1 auto;
+		align-items: flex-start;
+	}
+
+	&__title {
+		flex: 1 1 auto;
+		color: inherit;
+		font-weight: 600;
+		line-height: 120%;
+		@include adaptiv-value('font-size', 24, 18, 1);
+		transition: color 0.3s ease 0s;
+
+		&:not(:last-child) {
+			margin: 0 0 8/24 * 1em 0;
+		}
+
+		@media(any-hover:hover) {
+			&:hover {
+				color: $orangeColor;
+			}
+		}
+	}
+
+	&__text {
+		color: $grayColor;
+		font-size: rem(14);
+		line-height: 150%;
+	}
+}
+
+// <FURNITURE> ====================================================================================================================================================
+.furniture {
+	@include adaptiv-value('padding-bottom', 85, 40, 1);
+
+	&__container {}
+
+	&__label {
+		text-align: center;
+		color: $darkGreyColor;
+		line-height: 150%;
+		@include adaptiv-value('font-size', 20, 16, 1);
+
+		&:not(:last-child) {
+			margin: 0 0 8px/20px * 1em 0;
+		}
+	}
+
+	&__title {
+		margin: 0 0 32px/40px * 1em 0;
+	}
+
+	&__body {
+		position: relative;
+
+		@media(any-hover:none) {
+			&:hover {
+				overflow: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+		}
+	}
+
+	&__items {
+		display: grid;
+		grid-template-columns: auto;
+		grid-auto-flow: column;
+		align-items: center;
+		gap: rem(16);
+
+		@media(any-hover:hover) {
+			justify-content: center;
+		}
+	}
+
+	&__column {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		margin: 0px rem(-8);
+
+		&:first-child {
+			justify-content: flex-end;
+		}
+	}
+
+	&__row {
+		display: inline-grid;
+		padding: 0px rem(8);
+		gap: rem(16);
+		grid-template-columns: auto;
+		grid-auto-flow: column;
+
+		&:not(:last-child) {
+			margin: 0 0 rem(16) 0;
+		}
+	}
+}
+
+.row-furniture {
+
+	&_left-top {
+		justify-content: end;
+		align-items: end;
+	}
+
+	&_left-bottom {
+		justify-content: end;
+		align-items: start;
+	}
+
+	&_center {
+		display: block;
+	}
+
+	&_right-top {
+		align-items: end;
+	}
+
+	&_right-bottom {
+		align-items: start;
+	}
+
+	&__item {
+		@media(any-hover:hover) {
+			img {
+				transition: all 0.8s ease 0s;
+				filter: grayscale(1);
+			}
+
+			&:hover {
+				img {
+					filter: grayscale(0);
+				}
+			}
+		}
 	}
 }
