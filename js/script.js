@@ -93,6 +93,20 @@ window.onload = function () {
 			updateCart(targetElement, productId, false);
 			e.preventDefault();
 		}
+
+
+		if (targetElement.closest('.actions-product__link_heart')) {
+			updateHeart(targetElement);
+			e.preventDefault();
+		}
+	}
+}
+// Функция updateHeart
+function updateHeart(currentLike) {
+
+	const parentElement = currentLike.closest('.actions-product__link_heart');
+	if (currentLike.closest('.actions-product__link_heart')) {
+		parentElement.classList.toggle('_active');
 	}
 }
 
@@ -348,7 +362,7 @@ async function getProducts(button) {
 			<div class="actions-product__body">
 				<a href="" class="actions-product__button btn btn_white">Add to cart</a>
 				<a href="${productShareUrl}" class="actions-product__link _icon-share">Share</a>
-				<a href="${productLikeUrl}" class="actions-product__link _icon-favorite">Like</a>
+				<a href="${productLikeUrl}" class="actions-product__link actions-product__link_heart _icon-heart">Like</a>
 			</div>
 		</div>
 	`;

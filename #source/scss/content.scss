@@ -449,6 +449,20 @@
 		color: inherit;
 		font-weight: 600;
 		transition: color 0.3s ease 0s;
+		position: relative;
+
+		&_heart {
+			&._active {
+				.actions-product__image {
+					opacity: 1;
+					visibility: visible;
+				}
+
+				&:before {
+					color: $orangeColor;
+				}
+			}
+		}
 
 		&:before {
 			margin: 0px rem(10) 0px 0px;
@@ -462,6 +476,17 @@
 				color: $orangeColor;
 			}
 		}
+	}
+
+	&__image {
+		transition: all 0.3s ease 0s;
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+		top: rem(-2);
+		right: rem(37.5);
+		width: rem(20);
+		height: rem(20);
 	}
 }
 

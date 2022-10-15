@@ -336,19 +336,6 @@
 	@include adaptiv-value('column-gap', 32, 15, 1);
 
 	&__item {
-
-		&_favorites {
-			color: #262F56;
-			font-size: rem(24);
-			transition: color 0.3s ease 0s;
-
-			@media (any-hover:hover) {
-				&:hover {
-					color: $orangeColor;
-				}
-			}
-		}
-
 		&_user {
 			overflow: hidden;
 			border-radius: 50%;
@@ -357,6 +344,44 @@
 		}
 	}
 }
+
+.heart-header {
+
+
+	&__icon {
+		color: #262F56;
+		font-size: rem(24);
+		transition: color 0.3s ease 0s;
+		position: relative;
+
+		@media (any-hover:hover) {
+			&:hover {
+				color: $orangeColor;
+			}
+		}
+
+		span {
+			position: absolute;
+			width: rem(20);
+			height: rem(20);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			top: rem(-10);
+			right: rem(-10);
+			border-radius: 50%;
+			background-color: $orangeColor;
+			color: #fff;
+			font-size: rem(12);
+		}
+	}
+
+	&__body {}
+
+	&__list {}
+}
+
+.heart-list {}
 
 .cart-header {
 
