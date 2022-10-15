@@ -94,42 +94,29 @@ window.onload = function () {
 			e.preventDefault();
 		}
 
-
+		// СЧЕТЧИК ПОНРАВИВШИХСЯ ТОВАРОВ
 		if (targetElement.closest('.actions-product__link_heart')) {
-			updateHeart(targetElement);
+			const productId = targetElement.closest('.products__item').dataset.pid;
+			updateFavorite(targetElement, productId, addProduct = true);
 			e.preventDefault();
 		}
-	}
-}
-// Функция updateHeart
-function updateHeart(currentLike) {
-	const parentElement = currentLike.closest('.actions-product__link_heart');
-	const heartIcon = document.querySelector('.heart-header__icon');
-	const heartQuantity = heartIcon.querySelector('span');
 
-	parentElement.classList.add('_active');
-
-	if (!parentElement.classList.contains('_hold')) {
-
-		if (!heartQuantity) {
-			heartIcon.insertAdjacentHTML('beforeend', '<span>1</span>');
-		} else {
-			heartQuantity.innerHTML = ++heartQuantity.innerHTML;
+		// ПОКАЗ ПОНРАВИВШИХСЯ ТОВАРОВ
+		if (targetElement.closest('.heart-header__icon')) {
+			if (document.querySelector('.heart-list').children.length > 0) {
+				document.querySelector('.heart-header').classList.toggle('_active');
+			}
+			e.preventDefault();
+		} else if (!targetElement.closest('.heart-header') && !targetElement.closest('.actions-product__link_heart')) {
+			document.querySelector('.heart-header').classList.remove('_active');
 		}
 
-		parentElement.classList.add('_hold');
-
-	} else if (parentElement.classList.contains('_hold')) {
-
-		parentElement.classList.remove('_active');
-
-		heartQuantity.innerHTML = --heartQuantity.innerHTML;
-
-		if (heartQuantity.innerHTML == 0) {
-			heartQuantity.remove();
+		// УДАЛЕНИЕ ПОНРАВИВШИХСЯ ТОВАРОВ
+		if (targetElement.classList.contains('heart-list__unlike')) {
+			const productId = targetElement.closest('.heart-list__item').dataset.heartPid;
+			updateFavorite(targetElement, productId, false);
+			e.preventDefault();
 		}
-
-		parentElement.classList.remove('_hold');
 	}
 }
 
@@ -329,6 +316,7 @@ async function getProducts(button) {
 			const productOldPrice = item.priceOld;
 			const productShareUrl = item.shareUrl;
 			const productLikeUrl = item.likeUrl;
+			const productFavoriteUrl = item.favoriteUrl;
 			const productLabels = item.labels;
 
 
@@ -385,7 +373,9 @@ async function getProducts(button) {
 			<div class="actions-product__body">
 				<a href="" class="actions-product__button btn btn_white">Add to cart</a>
 				<a href="${productShareUrl}" class="actions-product__link _icon-share">Share</a>
-				<a href="${productLikeUrl}" class="actions-product__link actions-product__link_heart _icon-heart">Like</a>
+				<a href="${productLikeUrl}" class="actions-product__link actions-product__link_heart _icon-heart">
+				<img class="actions-product__image" src="img/products/${productFavoriteUrl}" alt="" />
+				<p>Like</p></a>
 			</div>
 		</div>
 	`;
@@ -409,6 +399,76 @@ async function getProducts(button) {
 		})
 	}
 }
+
+// Функция updateHeart
+function updateFavorite(currentLike, productId, addProduct = true) {
+	const parentElement = currentLike.closest('.actions-product__link_heart');
+	const heartIcon = document.querySelector('.heart-header__icon');
+	const heartQuantity = heartIcon.querySelector('span');
+	// const productId = currentLike.closest('.products__item').dataset.pid;
+	const heartProduct = document.querySelector(`[data-heart-pid="${productId}"]`);
+	const heartList = document.querySelector('.heart-list');
+
+
+	// ДОБАВЛЕНИЕ
+	if (addProduct) {
+		if (!parentElement.classList.contains('_hold')) {
+
+			const product = document.querySelector(`[data-pid="${productId}"]`);
+			const heartImage = product.querySelector('.item-product__image').innerHTML;
+			const heartTitle = product.querySelector('.item-product__title').innerHTML;
+			const heartPrice = product.querySelector('.item-product__price').innerHTML;
+			const heartContent = `
+			<a href="" class="heart-list__image _ibg">${heartImage}</a>
+			<div class="heart-list__body">
+				<a herf="" class="heart-list__title">${heartTitle}</a>
+				<div class="heart-list__price">${heartPrice}</div>
+				<a herf="" class="heart-list__unlike">Unlike</a>
+			</div>
+			`;
+
+
+			heartList.insertAdjacentHTML('beforeend', `<li data-heart-pid="${productId}" class="heart-list__item">${heartContent}</li>`)
+
+			if (!heartQuantity) {
+				heartIcon.insertAdjacentHTML('beforeend', '<span>1</span>');
+			} else {
+				heartQuantity.innerHTML = ++heartQuantity.innerHTML;
+			}
+			parentElement.classList.add('_active');
+			parentElement.classList.add('_hold');
+
+		} else if (parentElement.classList.contains('_hold')) {
+
+			parentElement.classList.remove('_active');
+
+			heartProduct.remove();
+
+			heartQuantity.innerHTML = --heartQuantity.innerHTML;
+
+
+			if (heartQuantity.innerHTML == 0) {
+				heartQuantity.remove();
+			}
+			parentElement.classList.remove('_hold');
+		}
+	} else {
+		document.querySelector(`[data-heart-pid="${productId}"]`).remove();
+		if (!heartList.children.length > 0) {
+			document.querySelector('.heart-header').classList.remove('_active');
+		}
+
+		heartQuantity.innerHTML = --heartQuantity.innerHTML;
+		if (heartQuantity.innerHTML == 0) {
+			heartQuantity.remove();
+		}
+
+		const currentProduct = document.querySelector(`[data-pid="${productId}"]`);
+		currentProduct.querySelector('.actions-product__link_heart').classList.remove('_active');
+		currentProduct.querySelector('.actions-product__link_heart').classList.remove('_hold');
+	}
+}
+
 
 // ФУНКЦИЯ addToCart
 function addToCart(productButton, productId) {

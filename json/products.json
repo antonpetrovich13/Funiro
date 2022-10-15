@@ -10,7 +10,8 @@
 			"price": "1.500.000",
 			"priceOld": "",
 			"shareUrl": "",
-			"likeUrl": ""
+			"likeUrl": "",
+			"favoriteUrl": "heart.png"
 		},
 		{
 			"id": 6,
@@ -31,7 +32,8 @@
 			"price": "1.500.000",
 			"priceOld": "2.500.000",
 			"shareUrl": "",
-			"likeUrl": ""
+			"likeUrl": "",
+			"favoriteUrl": "heart.png"
 		},
 		{
 			"id": 7,
@@ -48,7 +50,8 @@
 			"price": "7.000.000",
 			"priceOld": "14.500.000",
 			"shareUrl": "",
-			"likeUrl": ""
+			"likeUrl": "",
+			"favoriteUrl": "heart.png"
 		},
 		{
 			"id": 8,
@@ -65,7 +68,8 @@
 			"price": "500.000",
 			"priceOld": "",
 			"shareUrl": "",
-			"likeUrl": ""
+			"likeUrl": "",
+			"favoriteUrl": "heart.png"
 		}
 	]
 }
