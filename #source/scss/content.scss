@@ -452,14 +452,25 @@
 		position: relative;
 
 		&_heart {
+
+			&:before {
+				transition: transform 0.3s ease 0s;
+			}
+
 			&._active {
 				.actions-product__image {
 					opacity: 1;
 					visibility: visible;
+					animation-name: heartVisible;
+					animation-duration: 0.3s;
+					animation-delay: 0s;
+					animation-timing-function: linear;
+					animation-fill-mode: backwards;
 				}
 
 				&:before {
 					color: $orangeColor;
+					transform: scale(0);
 				}
 			}
 		}
@@ -467,6 +478,7 @@
 		&:before {
 			margin: 0px rem(10) 0px 0px;
 			font-size: rem(16);
+			transform: scale(1);
 		}
 
 		@media(any-hover:hover) {
@@ -483,10 +495,42 @@
 		opacity: 0;
 		visibility: hidden;
 		position: absolute;
+
+		animation-name: heartHidden;
+		animation-duration: 0.3s;
+		animation-delay: 0s;
+		animation-timing-function: linear;
+		animation-fill-mode: backwards;
 		top: rem(-2);
 		right: rem(37.5);
 		width: rem(20);
 		height: rem(20);
+	}
+
+	@keyframes heartVisible {
+		0% {
+			transform: scale(0);
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		70% {
+			transform: scale(1.4);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	@keyframes heartHidden {
+		0% {
+			transform: scale(1);
+		}
+
+		100% {
+			transform: scale(0);
+		}
 	}
 }
 
@@ -800,7 +844,6 @@
 .furniture {
 	@include adaptiv-value('padding-bottom', 85, 40, 1);
 
-	&__container {}
 
 	&__label {
 		text-align: center;
