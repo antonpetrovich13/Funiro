@@ -103,10 +103,33 @@ window.onload = function () {
 }
 // Функция updateHeart
 function updateHeart(currentLike) {
-
 	const parentElement = currentLike.closest('.actions-product__link_heart');
-	if (currentLike.closest('.actions-product__link_heart')) {
-		parentElement.classList.toggle('_active');
+	const heartIcon = document.querySelector('.heart-header__icon');
+	const heartQuantity = heartIcon.querySelector('span');
+
+	parentElement.classList.add('_active');
+
+	if (!parentElement.classList.contains('_hold')) {
+
+		if (!heartQuantity) {
+			heartIcon.insertAdjacentHTML('beforeend', '<span>1</span>');
+		} else {
+			heartQuantity.innerHTML = ++heartQuantity.innerHTML;
+		}
+
+		parentElement.classList.add('_hold');
+
+	} else if (parentElement.classList.contains('_hold')) {
+
+		parentElement.classList.remove('_active');
+
+		heartQuantity.innerHTML = --heartQuantity.innerHTML;
+
+		if (heartQuantity.innerHTML == 0) {
+			heartQuantity.remove();
+		}
+
+		parentElement.classList.remove('_hold');
 	}
 }
 
