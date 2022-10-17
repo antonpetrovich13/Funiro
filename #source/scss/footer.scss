@@ -178,6 +178,7 @@
 }
 
 .subscribe {
+	position: relative;
 
 	&__title {
 		margin: 0px 0px 16px/24px * 1em 0px;
@@ -186,6 +187,10 @@
 	&__form {
 		display: flex;
 		position: relative;
+
+		&._error {
+			border: rem(1) solid red;
+		}
 	}
 
 	&__button {
@@ -212,5 +217,34 @@
 		padding: 0 rem(12);
 		background-color: #f4f5f7;
 		color: #828282;
+
+		&._error {
+			border: rem(1) solid red;
+		}
+	}
+
+	&__message {
+		position: absolute;
+		left: rem(0);
+		font-size: rem(12);
+		color: red;
+		font-weight: 300;
+
+		animation-name: showMessage;
+		animation-duration: 0.3s;
+		animation-timing-function: ease;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes showMessage {
+		0% {
+			opacity: 0;
+			@include adaptiv-value('bottom', -25, -17, 1);
+		}
+
+		100% {
+			opacity: 1;
+			@include adaptiv-value('bottom', -20, -15, 1);
+		}
 	}
 }

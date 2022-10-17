@@ -680,69 +680,63 @@ if (furniture && !isMobile.any()) {
 	})
 }
 
-
-
-
-
-
 // ВАЛИДАЦИЯ ФОРМЫ
-/*document.addEventListener('DOMContentLoaded', function () {
-	const form = document.getElementById('form');
-	form.addEventListener('submit', formSend);
-	async function formSend(e) {
-		e.preventDefault();
-
-		let error = formValidate(form);
-		let formData = new FormData(form);
-
-		if (error === 0) {
-			form.classList.add('_sending');
-			let response = await fetch('sendmail.php', {
-				method: 'POST',
-				body: formData
-			});
-			if (response.ok) {
-				let result = await response.json();
-				alert(result.message);
-				form.reset();
-				form.classList.remove('_sending');
-			} else {
-				alert("Ошибка");
-				form.classList.remove('_sending');
-			}
+const footerForm = document.forms.footerForm;
+if (footerForm) {
+	footerForm.addEventListener('submit', function (e) {
+		if (!footerForm.input.value.includes('.') || !footerForm.input.value.includes('@')) {
+			footerForm.input.classList.add('_error');
+			footerForm.input.focus();
+			addErrorMessage(addMessage = true);
+			e.preventDefault();
 		} else {
-			alert('Заполните обязательные поля');
+			footerForm.input.classList.remove('_error');
+			footerForm.input.blur();
+			addErrorMessage(false);
+			addSucsessMessage();
+			e.preventDefault();
 		}
-	}
+	})
 
-	function formValidate(form) {
-		let error = 0;
-		let formReq = document.querySelectorAll('._req');
-
-		for (let index = 0; index < formReq.length; index++) {
-			const input = formReq[index];
-			formRemoveError(input);
-			if (input.value === '') {
-				formAddError(input);
-				error++;
+	function addErrorMessage(value) {
+		if (value) {
+			if (!footerForm.querySelector('.subscribe__message')) {
+				const errorMessage = document.createElement('div');
+				errorMessage.className = 'subscribe__message';
+				errorMessage.innerHTML = 'Enter correct email';
+				footerForm.append(errorMessage);
+			};
+		} else {
+			if (footerForm.querySelector('.subscribe__message')) {
+				footerForm.querySelector('.subscribe__message').remove();
 			}
 		}
-		return error;
-	}
-	function formAddError(input) {
-		input.parentElement.classList.add('_error');
-		input.classList.add('_error');
-	}
-	function formRemoveError(input) {
-		input.parentElement.classList.remove('_error');
-		input.classList.remove('_error');
-	}
+	};
 
-	//Функция теста телефона
-	function phoneTest(input) {
-		return !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(input.value);
+	function addSucsessMessage() {
+		const sucsess = `
+		<div class="page__sucsess sucsess">
+			<div class="sucsess__body">
+				<p class="sucsess__text"><span class="sucsess__cancel">X</span>Email sent successfully!</p>
+			</div>
+		</div>
+		`;
+		document.querySelector('.page').insertAdjacentHTML('beforeend', sucsess);
+		document.body.classList.add('_lock');
+
+		const cancelButton = document.querySelector('.sucsess__cancel');
+
+		if (cancelButton) {
+			cancelButton.onclick = function (event) {
+				document.querySelector('.sucsess').remove();
+				document.body.classList.remove('_lock');
+				footerForm.submit();
+			}
+		}
 	}
-});*/
+}
+
+
 
 
 

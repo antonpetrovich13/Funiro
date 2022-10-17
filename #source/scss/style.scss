@@ -289,3 +289,67 @@ body {
 	z-index: 100;
 	transition: all 1s ease 0s;
 }
+
+.sucsess {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	transition: scale(1);
+
+	&__body {
+		width: 100%;
+		height: 100%;
+		background-color: #3a3a3a8a;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__text {
+		position: relative;
+		align-items: center;
+		flex: 0 0 350/18 * 1em;
+		height: 150/18 * 1em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #fff;
+		border-radius: rem(30);
+		@include adaptiv-value('font-size', 18, 15, 1);
+		animation-name: sucsess;
+		animation-duration: 0.3s;
+		animation-timing-function: ease;
+	}
+
+	&__cancel {
+		transition: all 0.3s ease 0s;
+		cursor: pointer;
+		position: absolute;
+		display: block;
+		width: rem(5);
+		height: rem(5);
+		top: rem(15);
+		right: rem(22);
+		@include adaptiv-value('font-size', 15, 14, 1);
+		color: #3a3a3a8a;
+
+		@media(any-hover:hover) {
+			&:hover {
+				color: $orangeColor
+			}
+		}
+	}
+
+	@keyframes sucsess {
+		0% {
+			transform: scale(0);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+}
