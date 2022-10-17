@@ -187,10 +187,6 @@
 	&__form {
 		display: flex;
 		position: relative;
-
-		&._error {
-			border: rem(1) solid red;
-		}
 	}
 
 	&__button {
@@ -219,6 +215,7 @@
 		color: #828282;
 
 		&._error {
+			transition: all 0.3s ease 0s;
 			border: rem(1) solid red;
 		}
 	}

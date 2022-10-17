@@ -1965,8 +1965,6 @@ body {
     display: -ms-flexbox;
     display: flex;
     position: relative; }
-    .subscribe__form._error {
-      border: 0.0625rem solid red; }
   .subscribe__button {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 2.8125rem;
@@ -1997,6 +1995,9 @@ body {
     background-color: #f4f5f7;
     color: #828282; }
     .subscribe__input._error {
+      -webkit-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
       border: 0.0625rem solid red; }
   .subscribe__message {
     position: absolute;

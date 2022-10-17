@@ -117,6 +117,16 @@ window.onload = function () {
 			updateFavorite(targetElement, productId, false);
 			e.preventDefault();
 		}
+
+		// ПРОКРУТКА КВЕРХУ ПРИ НАЖАТИИ НА ЛОГО
+		if (targetElement.classList.contains('header__logo')) {
+			e.preventDefault();
+			window.scrollTo({
+				top: 0,
+				left: 0,
+				behavior: 'smooth'
+			});
+		}
 	}
 }
 
@@ -469,7 +479,6 @@ function updateFavorite(currentLike, productId, addProduct = true) {
 	}
 }
 
-
 // ФУНКЦИЯ addToCart
 function addToCart(productButton, productId) {
 	if (!productButton.classList.contains('_hold')) {
@@ -735,7 +744,6 @@ if (footerForm) {
 		}
 	}
 }
-
 
 
 
