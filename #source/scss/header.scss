@@ -354,6 +354,7 @@
 		font-size: rem(24);
 		transition: color 0.3s ease 0s;
 		position: relative;
+		display: block;
 
 		@media (any-hover:hover) {
 			&:hover {
@@ -374,7 +375,22 @@
 			background-color: $orangeColor;
 			color: #fff;
 			font-size: rem(12);
+
+			animation-name: showQuantity;
+			animation-duration: 0.3s;
+			animation-timing-function: ease;
+			animation-fill-mode: forwards;
+
+			&._active {
+				animation-name: removeQuantity;
+				animation-duration: 0.3s;
+				animation-timing-function: ease;
+				animation-fill-mode: forwards;
+			}
 		}
+
+
+
 	}
 
 	&__body {
@@ -409,6 +425,26 @@
 		}
 	}
 
+}
+
+@keyframes showQuantity {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes removeQuantity {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(0);
+	}
 }
 
 .heart-list {
@@ -502,6 +538,21 @@
 			background-color: $orangeColor;
 			color: #fff;
 			font-size: rem(12);
+			animation-name: showQuantity;
+			animation-duration: 0.3s;
+			animation-timing-function: ease;
+			animation-fill-mode: forwards;
+
+			&._active {
+				animation-name: removeQuantity;
+				animation-duration: 0.3s;
+				animation-timing-function: ease;
+				animation-fill-mode: forwards;
+			}
+
+			@media (max-width: 425px) {
+				top: rem(-8);
+			}
 		}
 	}
 
