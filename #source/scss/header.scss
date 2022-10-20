@@ -387,6 +387,10 @@
 				animation-timing-function: ease;
 				animation-fill-mode: forwards;
 			}
+
+			@media (max-width: 425px) {
+				top: rem(-9);
+			}
 		}
 
 

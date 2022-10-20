@@ -507,6 +507,9 @@ body {
       animation-timing-function: ease;
       -webkit-animation-fill-mode: forwards;
       animation-fill-mode: forwards; }
+    @media (max-width: 425px) {
+      .heart-header__icon span {
+        top: -0.5625rem; } }
 
 .heart-header__body {
   background-color: #f4f5f7;
